@@ -3,20 +3,27 @@ import { ToastContainer,toast } from 'react-toastify';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import './App.css';
+
+import { Container,Row,Col } from "reactstrap";
+
 import BuyPage from "./Components/BuyPage";
+import Cart from "./Components/Cart";
 
 function App() {
 const[cartItem,setCartItem]=useState([])
 const addCartItems=(item)=>{
     const isAlreadyAdded=cartItem.findIndex(e=>{
-      return e.id===item.id
+      return e.photoId===item.photoId
     })
     if(isAlreadyAdded !== -1){
       toast("Item is already added",{
         type:"error"
       })
     }
-    setCartItem([...cartItem,item])
+    
+      setCartItem([...cartItem,item])
+    
+    
 }
 
 const buyNow=()=>{
@@ -27,12 +34,21 @@ const buyNow=()=>{
 }
 
 const removeItem=(item)=>{
-  setCartItem(cartItem.filter(cItem=>cItem.id !==item.id))
+  setCartItem(cartItem.filter(cItem=>cItem.photoId !==item.photoId))
 }
 return(
- <div className="App">
-  <BuyPage addCartItems={addCartItems}/>
- </div>
+<Container fluid>
+  <ToastContainer/>
+  <Row>
+    <Col md="8">
+      <BuyPage addCartItems={addCartItems}/>
+    </Col>
+
+    <Col md="4">
+      <Cart cartItem={cartItem} buyNow={buyNow} removeItem={removeItem}/>
+    </Col>
+  </Row>
+</Container>
   
 )
 }

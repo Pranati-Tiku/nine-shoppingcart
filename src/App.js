@@ -20,8 +20,10 @@ const addCartItems=(item)=>{
         type:"error"
       })
     }
-    
+    if(isAlreadyAdded===-1){
+
       setCartItem([...cartItem,item])
+    }
     
     
 }

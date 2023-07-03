@@ -7,7 +7,7 @@ import { Container,ListGroup,ListGroupItem,Button,Card,CardHeader,CardBody,CardF
 const Cart=({cartItem,removeItem,buyNow})=>{
     let amount=0;
     cartItem.forEach(element => {
-        amount=parseFloat(amount)+parseFloat(cartItem.photoPrice)
+        amount=parseFloat(amount)+parseFloat(element.photoPrice)
     });
  return (
     <Container fluid>
